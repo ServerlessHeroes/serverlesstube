@@ -59,12 +59,13 @@ function sign(key, policy, encoding, next) {
 function generateResponse(status, message){
     return {
       statusCode: status,
+      headers: { "Access-Control-Allow-Origin": "*" },
       body: JSON.stringify({'message':message})
     }
 }
 
 exports.handler = function(event, context, callback){
-  var filename = decodeURI(event.queryStringParameters.filename);
+  var filename = decodeURI(event.headers.filename);
 
   async.waterfall([
       async.apply(generatePolicyDocument, filename),

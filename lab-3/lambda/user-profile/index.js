@@ -13,12 +13,13 @@ var request = require('request');
 function generateResponse(status, message){
     return {
       statusCode: status,
+      headers: { "Access-Control-Allow-Origin": "*" },
       body: JSON.stringify({'message':message})
     }
 }
 
 exports.handler = function(event, context, callback){
-    var authToken = event.queryStringParameters.Authorization;
+    var authToken = event.headers.Authorization;
 
     if (!authToken) {
       var response = generateResponse(400, 'AuthToken not found');
@@ -27,7 +28,7 @@ exports.handler = function(event, context, callback){
     	return;
     }
 
-    var token = event.authToken.split(' ')[1];
+    var token = authToken.split(' ')[1];
 
     var body = {
         'id_token': token
