@@ -7,7 +7,7 @@
  * UPLOAD_BUCKET
  * SECRET_ACCESS_KEY
  * ACCESS_KEY
- * UPLOAD_URI
+ * UPLOAD_URI - https://s3.amazonaws.com
  */
 
 'use strict';
@@ -60,12 +60,12 @@ function generateResponse(status, message){
     return {
       statusCode: status,
       headers: { "Access-Control-Allow-Origin": "*" },
-      body: JSON.stringify({'message':message})
+      body: JSON.stringify({message})
     }
 }
 
 exports.handler = function(event, context, callback){
-  var filename = decodeURI(event.headers.filename);
+  var filename = decodeURI(event.queryStringParameters.filename);
 
   async.waterfall([
       async.apply(generatePolicyDocument, filename),
