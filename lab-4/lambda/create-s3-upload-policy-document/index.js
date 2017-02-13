@@ -60,7 +60,7 @@ function generateResponse(status, message){
     return {
       statusCode: status,
       headers: { "Access-Control-Allow-Origin": "*" },
-      body: JSON.stringify({message})
+      body : JSON.stringify(message)
     }
 }
 
