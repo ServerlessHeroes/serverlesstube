@@ -1,11 +1,14 @@
 /**
  * Created by Peter Sbarski
- * Last Updated: 28/03/2016
+ * Updated by Mike Chambers
+ * Last Updated: 1/02/2017
+ *
+ * Required Env Vars:
+ * AUTH0_SECRET
  */
 'use strict';
 
 var jwt = require('jsonwebtoken');
-var env = require('./config');
 
 var generatePolicy = function(principalId, effect, resource) {
     var authResponse = {};
@@ -32,7 +35,7 @@ exports.handler = function(event, context, callback){
 
     var token = event.authorizationToken.split(' ')[1];
 
-    var secretBuffer = new Buffer(env.AUTH0_SECRET, 'base64');
+    var secretBuffer = new Buffer(process.env.AUTH0_SECRET);
     jwt.verify(token, secretBuffer, function(err, decoded){
     	if(err){
     		console.log('Failed jwt verification: ', err, 'auth: ', event.authorizationToken);

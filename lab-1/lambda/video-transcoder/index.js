@@ -1,9 +1,18 @@
+/**
+ * Created by Peter Sbarski
+ * Updated by Mike Chambers
+ * Last Updated: 1/02/2017
+ *
+ * Required Env Vars:
+ * ELASTIC_TRANSCODER_REGION
+ * ELASTIC_TRANSCODER_PIPELINE_ID
+ */
+
 'use strict';
 var AWS = require('aws-sdk');
-var config = require('./config');
 
 var elasticTranscoder = new AWS.ElasticTranscoder({
-    region: config.ELASTIC_TRANSCODER_REGION
+    region: process.env.ELASTIC_TRANSCODER_REGION
 });
 
 exports.handler = function(event, context, callback){
@@ -19,7 +28,7 @@ exports.handler = function(event, context, callback){
     var outputKey = sourceKey.split('.')[0];
 
     var params = {
-        PipelineId: config.ELASTIC_TRANSCODER_PIPELINE_ID,
+        PipelineId: process.env.ELASTIC_TRANSCODER_PIPELINE_ID,
         OutputKeyPrefix: outputKey + '/',
         Input: {
             Key: sourceKey

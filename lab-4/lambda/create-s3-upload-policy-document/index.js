@@ -1,9 +1,20 @@
+/**
+ * Created by Peter Sbarski
+ * Updated by Mike Chambers
+ * Last Updated: 1/02/2017
+ *
+ * Required Env Vars:
+ * UPLOAD_BUCKET
+ * SECRET_ACCESS_KEY
+ * ACCESS_KEY
+ * UPLOAD_URI - https://s3.amazonaws.com
+ */
+
 'use strict';
 
 var AWS = require('aws-sdk');
 var async = require('async');
 var crypto = require('crypto');
-var env = require('./config');
 
 var s3 = new AWS.S3();
 
@@ -26,7 +37,7 @@ function generatePolicyDocument(filename, next) {
       'expiration' : expiration,
       'conditions': [
           {key: key},
-          {bucket: env.UPLOAD_BUCKET},
+          {bucket: process.env.UPLOAD_BUCKET},
           {acl: 'private'},
           ['starts-with', '$Content-Type', '']
       ]
@@ -41,12 +52,20 @@ function encode(key, policy, next) {
 }
 
 function sign(key, policy, encoding, next) {
-  var signature = crypto.createHmac('sha1', env.SECRET_ACCESS_KEY).update(encoding).digest('base64');
+  var signature = crypto.createHmac('sha1', process.env.SECRET_ACCESS_KEY).update(encoding).digest('base64');
   next(null, key, policy, encoding, signature);
 }
 
+function generateResponse(status, message){
+    return {
+      statusCode: status,
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body : JSON.stringify(message)
+    }
+}
+
 exports.handler = function(event, context, callback){
-  var filename = decodeURI(event.filename);
+  var filename = decodeURI(event.queryStringParameters.filename);
 
   async.waterfall([
       async.apply(generatePolicyDocument, filename),
@@ -55,15 +74,20 @@ exports.handler = function(event, context, callback){
   ],
     function (err, key, policy, encoding, signature) {
       if (err) {
-        callback(err);
+        var response = generateResponse(400, err);
+
+        callback(null, response);
       } else {
-        callback(null, {
+        var body = {
           signature: signature,
           encoded_policy: encoding,
-          access_key: env.ACCESS_KEY,
-          upload_url: env.UPLOAD_URI + '/' + env.UPLOAD_BUCKET,
+          access_key: process.env.ACCESS_KEY,
+          upload_url: process.env.UPLOAD_URI + '/' + process.env.UPLOAD_BUCKET,
           key: key
-        })
+        };
+        var response = generateResponse(200, body);
+
+        callback(null, response);
       }
     }
   )

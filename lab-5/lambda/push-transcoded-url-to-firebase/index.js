@@ -1,13 +1,24 @@
+/**
+ * Created by Peter Sbarski
+ * Updated by Mike Chambers
+ * Last Updated: 1/02/2017
+ *
+ * Required Env Vars:
+ * BUCKET_REGION
+ * SERVICE_ACCOUNT
+ * DATABASE_URL
+ * S3 : https://s3.amazonaws.com/YOUR_TRANSCODED_BUCKET_NAME_HERE
+ */
+
 'use strict';
 
 var AWS = require('aws-sdk');
 var firebase = require('firebase');
-var config = require('./config');
 
 // save the URL to firebase
 firebase.initializeApp({
-  serviceAccount: config.SERVICE_ACCOUNT,
-  databaseURL: config.DATABASE_URL
+  serviceAccount: process.env.SERVICE_ACCOUNT,
+  databaseURL: process.env.DATABASE_URL
 });
 
 exports.handler = function(event, context, callback){
@@ -16,9 +27,9 @@ exports.handler = function(event, context, callback){
     var key = event.Records[0].s3.object.key;
     var bucket = event.Records[0].s3.bucket.name;
 
-    var regionIdentifier = config.BUCKET_REGION === 'us-east-1' ? 's3' : 's3-' + config.BUCKET_REGION;
+    var regionIdentifier = process.env.BUCKET_REGION === 'us-east-1' ? 's3' : 's3-' + process.env.BUCKET_REGION;
 
-    var videoUrl = config.S3 + '/' + key;
+    var videoUrl = process.env.S3 + '/' + key;
 
     // construct S3 URL based on bucket and key
     // the input file may have spaces so replace them with '+'

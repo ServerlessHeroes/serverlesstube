@@ -1,16 +1,27 @@
+/**
+ * Created by Peter Sbarski
+ * Updated by Mike Chambers
+ * Last Updated: 1/02/2017
+ *
+ * Required Env Vars:
+ * ELASTIC_TRANSCODER_REGION
+ * ELASTIC_TRANSCODER_PIPELINE_ID
+ * SERVICE_ACCOUNT
+ * DATABASE_URL
+ */
+
 'use strict';
 
 var AWS = require('aws-sdk');
 var firebase = require('firebase');
-var config = require('./config');
 
 var elasticTranscoder = new AWS.ElasticTranscoder({
-    region: config.ELASTIC_TRANSCODER_REGION
+    region: process.env.ELASTIC_TRANSCODER_REGION
 });
 
 firebase.initializeApp({
-  serviceAccount: config.SERVICE_ACCOUNT,
-  databaseURL: config.DATABASE_URL
+  serviceAccount: process.env.SERVICE_ACCOUNT,
+  databaseURL: process.env.DATABASE_URL
 });
 
 function pushVideoEntryToFirebase(callback, key) {
@@ -49,7 +60,7 @@ exports.handler = function (event, context, callback) {
     var uniqueVideoKey = outputKey.split('/')[0];
 
     var params = {
-        PipelineId: config.ELASTIC_TRANSCODER_PIPELINE_ID,
+        PipelineId: process.env.ELASTIC_TRANSCODER_PIPELINE_ID,
         OutputKeyPrefix: outputKey + '/',
         Input: {
             Key: sourceKey
