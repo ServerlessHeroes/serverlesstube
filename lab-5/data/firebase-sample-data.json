@@ -1,27 +1,27 @@
 {
   "videos" : {
-    "015c8836608a5ceefb5ede16f2f1688211122d28" : {
-      "source" : "https://s3.amazonaws.com/serverless-video-transcoded/015c8836608a5ceefb5ede16f2f1688211122d28/disney/015c8836608a5ceefb5ede16f2f1688211122d28/disney-web-480p.mp4",
+    "1dd4a785fdd626b8d9339c3e4e4e52cac8b39acf" : {
+      "source" : "https://s3.amazonaws.com/serverlesstube-sample-videos/1dd4a785fdd626b8d9339c3e4e4e52cac8b39acf/bridge/1dd4a785fdd626b8d9339c3e4e4e52cac8b39acf/bridge-web-480p.mp4",
       "transcoding" : false
     },
-    "02b7f42c7841e3bef461d9282672ddf35d25e53a" : {
-      "source" : "https://s3.amazonaws.com/serverless-video-transcoded/02b7f42c7841e3bef461d9282672ddf35d25e53a/avengers/02b7f42c7841e3bef461d9282672ddf35d25e53a/avengers-web-480p.mp4",
+    "29afea76b837be052d6013ef05becc6d3f25237b" : {
+      "source" : "https://s3.amazonaws.com/serverlesstube-sample-videos/29afea76b837be052d6013ef05becc6d3f25237b/mirage/29afea76b837be052d6013ef05becc6d3f25237b/mirage-web-480p.mp4",
       "transcoding" : false
     },
-    "536cd0e03138791b4e4f7370c6e2c71ec825bd84" : {
-      "source" : "https://s3.amazonaws.com/serverless-video-transcoded/536cd0e03138791b4e4f7370c6e2c71ec825bd84/mogali/536cd0e03138791b4e4f7370c6e2c71ec825bd84/mogali-web-480p.mp4",
+    "ba8d43c22f03306a78853d74b9c0b7d2c4c2bdba" : {
+      "source" : "https://s3.amazonaws.com/serverlesstube-sample-videos/ba8d43c22f03306a78853d74b9c0b7d2c4c2bdba/dog/ba8d43c22f03306a78853d74b9c0b7d2c4c2bdba/dog-web-480p.mp4",
       "transcoding" : false
     },
-    "591f691c512e3b8196db5d5585b16d4e0e0898f5" : {
-      "source" : "https://s3.amazonaws.com/serverless-video-transcoded/591f691c512e3b8196db5d5585b16d4e0e0898f5/starwars/591f691c512e3b8196db5d5585b16d4e0e0898f5/starwars-web-480p.mp4",
+    "c38dd499afa1666b77de41a73b22b3d9d27952c2" : {
+      "source" : "https://s3.amazonaws.com/serverlesstube-sample-videos/c38dd499afa1666b77de41a73b22b3d9d27952c2/death-valley/c38dd499afa1666b77de41a73b22b3d9d27952c2/death-valley-web-480p.mp4",
       "transcoding" : false
     },
-    "c028ce6f1801968e517f8f6af95f3244f7864dbe" : {
-      "source" : "https://s3.amazonaws.com/serverless-video-transcoded/c028ce6f1801968e517f8f6af95f3244f7864dbe/batman-vs-superman/c028ce6f1801968e517f8f6af95f3244f7864dbe/batman-vs-superman-web-480p.mp4",
+    "eea1537dd67a308e17f20b840b6eb5724d1635c0" : {
+      "source" : "https://s3.amazonaws.com/serverlesstube-sample-videos/eea1537dd67a308e17f20b840b6eb5724d1635c0/stream/eea1537dd67a308e17f20b840b6eb5724d1635c0/stream-web-480p.mp4",
       "transcoding" : false
     },
-    "f94a93ecca2454551adcc31407526691f0c9eeaa" : {
-      "source" : "https://s3.amazonaws.com/serverless-video-transcoded/f94a93ecca2454551adcc31407526691f0c9eeaa/xmen/f94a93ecca2454551adcc31407526691f0c9eeaa/xmen-web-480p.mp4",
+    "fe86876b474f28652b4e1f483abe50b04653efb2" : {
+      "source" : "https://s3.amazonaws.com/serverlesstube-sample-videos/fe86876b474f28652b4e1f483abe50b04653efb2/snow-ball/fe86876b474f28652b4e1f483abe50b04653efb2/snow-ball-web-480p.mp4",
       "transcoding" : false
     }
   }
