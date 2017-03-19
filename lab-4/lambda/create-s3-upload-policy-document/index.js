@@ -78,11 +78,12 @@ exports.handler = function(event, context, callback){
 
         callback(null, response);
       } else {
+        var UPLOAD_URI = process.env.UPLOAD_URI.replace('s3.',process.env.UPLOAD_BUCKET + '.s3.') + '/'
         var body = {
           signature: signature,
           encoded_policy: encoding,
           access_key: process.env.ACCESS_KEY,
-          upload_url: process.env.UPLOAD_URI + '/' + process.env.UPLOAD_BUCKET,
+          upload_url: UPLOAD_URI,
           key: key
         };
         var response = generateResponse(200, body);
