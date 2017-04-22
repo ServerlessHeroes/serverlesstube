@@ -6,5 +6,3 @@ Sample video files can be found here:
 https://github.com/mikegchambers/serverlesstube-sample-videos
 
 ...or you can use your own! 
-
-
